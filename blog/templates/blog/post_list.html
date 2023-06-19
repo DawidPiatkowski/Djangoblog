@@ -11,9 +11,17 @@
         <h3>autor: Dawid Piątkowski</h3>
         <h4>Wszelkie prawa zastrzeżone</h4>
     </div>
-    <div>
-        {{ posts }}
-    </div>
 
+    {% comment "Komentarz autora" %}
+    Tutaj lista postó
+    {% endcomment %}
+
+    {% for post in posts %}
+    <div>
+        <p>opublikowany: {{ post.publish_date }}</p>
+        <h2><a href = "">{{ post.title }}</a></h2>
+        <em>{{ post.text|linebreaksbr }}</em>
+    </div>
+    {% endfor %}
 </body>
 </html>
