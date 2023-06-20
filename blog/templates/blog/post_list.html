@@ -1,27 +1,15 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog dla programistów</title>
-</head>
-<body>
-    <div>
-        <h1>Witam na stronie bloga!!!</h1>
-        <h2>Blog o programowaniu</h2>
-        <h3>autor: Dawid Piątkowski</h3>
-        <h4>Wszelkie prawa zastrzeżone</h4>
-    </div>
+    {% extends 'blog/base.html' %}
 
-    {% comment "Komentarz autora" %}
-    Tutaj lista postó
-    {% endcomment %}
-
-    {% for post in posts %}
-    <div>
-        <p>opublikowany: {{ post.publish_date }}</p>
-        <h2><a href = "">{{ post.title }}</a></h2>
-        <em>{{ post.text|linebreaksbr }}</em>
-    </div>
-    {% endfor %}
-</body>
-</html>
+    {% block content %}
+        {% for post in posts %}
+        <div class="post">
+            <img src="{{ post.image.url }}" class="img" alt="Obrazek" width="40%"><br>
+            <div class="data">
+            <p>opublikowany: {{ post.publish_date }}</p>
+            </div>
+            <h2><b><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></b></h2>
+        <br/>
+            <em>{{ post.text|linebreaksbr }}</em><br/>
+        </div>
+        {% endfor %}
+    {% endblock %}
